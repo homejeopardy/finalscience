@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Jeopardy! History</title>
+    <style>
+        body {
+            font-family: "Trebuchet MS", sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #000080;
+            color: #FFD700;
+        }
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #category, #question, #answer {
+            font-size: 36px;
+            font-weight: bold;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            border: 5px solid #FFD700;
+            background-color: rgba(0, 0, 139, 0.9);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        #category.show, #question.show, #answer.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        button {
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            background-color: #FFD700;
+            color: #000080;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #FFC107;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1 style="font-size: 48px; text-transform: uppercase;">Final Jeopardy! History</h1>
+        <button id="nextButton">Start</button>
+        <div id="category"></div>
+        <div id="question"></div>
+        <div id="answer"></div>
+    </div>
+
+    <script>
+        const categoryText = "Ancient Civilizations";
+        const questionText = "This development allowed early humans to settle in one place, leading to the rise of civilizations.";
+        const answerText = "What is agriculture?";
+
+        let state = 0;
+        const button = document.getElementById("nextButton");
+        const categoryDiv = document.getElementById("category");
+        const questionDiv = document.getElementById("question");
+        const answerDiv = document.getElementById("answer");
+
+        button.addEventListener("click", () => {
+            if (state === 0) {
+                categoryDiv.textContent = "Category: " + categoryText;
+                categoryDiv.classList.add("show");
+                state++;
+                button.textContent = "Next";
+            } else if (state === 1) {
+                questionDiv.textContent = questionText;
+                questionDiv.classList.add("show");
+                state++;
+            } else if (state === 2) {
+                answerDiv.textContent = answerText;
+                answerDiv.classList.add("show");
+                button.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
